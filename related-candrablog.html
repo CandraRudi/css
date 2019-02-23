@@ -18,10 +18,15 @@ a {
 }
 *{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
 .related-post-by-title{width:100%;margin:25px 0 0;display:block;position:relative}
-.related-post-by-title ul{padding:15px 10px 10px 30px;border:1px solid #ddd;margin:0;text-align:left;}
+.related-post-by-title ul{list-style: none; margin: 0; padding: 0;}
 .related-post-by-title h4{display:inline-block;background:#fff;padding:0 15px;height:28px;line-height:28px;border:1px solid #ddd;margin:0;position:absolute;top:-14px;left:15px;font-size:16px;font-weight:700}
-.related-post-by-title li {margin-top:10px;line-height:1.2;padding-left:0!important}
+.related-post-by-title li {margin-top: 5px; padding: 0 0 0 15px; position: relative;}
 .related-post-by-title li a{font-size:16px;font-weight:700;}
+  
+ /* Icon List Style Color Related Post, Popular Post, Random Post */
+.related-post li:before,.PopularPosts .widget-content ul li a:before,#HTML1 .widget-content ul li a:before{background:url("data:image/svg+xml;charset=utf8,%3csvg viewBox='0 0 24 24' width='20' height='20' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cg%3e%3cpath style='fill:%23C51162' d='M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z'%3e%3c/path%3e%3c/g%3e%3c/svg%3e") no-repeat;} 
+  
+  
 </style>
 </head>
 <body>
@@ -54,7 +59,7 @@ function getQueryVariable(variable) {
 <script>
 function related_results_labels(e){for(var t=0;t<e.feed.entry.length;t++){var l=e.feed.entry[t];relatedTitles[relatedTitlesNum]=l.title.$t;for(var r=0;r<l.link.length;r++)if("alternate"==l.link[r].rel){relatedUrls[relatedTitlesNum]=l.link[r].href,relatedTitlesNum++;break}}}function removeRelatedDuplicates(){for(var e=new Array(0),t=new Array(0),l=0;l<relatedUrls.length;l++)contains(e,relatedUrls[l])||(e.length+=1,e[e.length-1]=relatedUrls[l],t.length+=1,t[t.length-1]=relatedTitles[l]);relatedTitles=t,relatedUrls=e}function contains(e,t){for(var l=0;l<e.length;l++)if(e[l]==t)return!0;return!1}function printRelatedLabels(){var e=Math.floor((relatedTitles.length-1)*Math.random()),t=0;for(document.write("<ul>");t<relatedTitles.length&&getQueryVariable('jumlah')>t;)document.write('<li><a href="'+relatedUrls[e]+'" title="'+relatedTitles[e]+'" target="_blank">'+relatedTitles[e]+"</a></li>"),e<relatedTitles.length-1?e++:e=0,t++;document.write("</ul>"),document.write()}var relatedTitles=new Array,relatedTitlesNum=0,relatedUrls=new Array;
 </script>
-<h4>Baca juga:</h4>
+
 <script>
 var scriptJS = getQueryVariable('url') + "/feeds/posts/default/-/" + getQueryVariable('label') + "?alt=json-in-script&amp;callback=related_results_labels&amp;max-results=" + getQueryVariable('jumlah')
 document.write("<scr" + "ipt src="+scriptJS+"></scr" + "ipt>");
